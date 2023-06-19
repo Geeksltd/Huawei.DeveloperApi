@@ -30,6 +30,9 @@
         [JsonPropertyName("productId")]
         public string ProductId { get; set; }
 
+        [JsonPropertyName("subscriptionId")]
+        public string SubscriptionId { get; set; }
+
         [JsonPropertyName("purchaseToken")]
         public string PurchaseToken { get; set; }
 
