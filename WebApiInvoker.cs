@@ -16,10 +16,12 @@
         {
             return Send<T>(async (client, enc) =>
             {
-                client.DefaultRequestHeaders.Authorization =
-                    new System.Net.Http.Headers.AuthenticationHeaderValue("Basic", accessToken);
+                var accessTokenStr = Convert.ToBase64String(Encoding.UTF8.GetBytes($"APPAT:{accessToken}"));
 
-                var payload = new StringContent(request.ToJson(), Encoding, "text/json");
+                client.DefaultRequestHeaders.Authorization =
+                    new System.Net.Http.Headers.AuthenticationHeaderValue("Basic", accessTokenStr);
+
+                var payload = new StringContent(request.ToJson(), Encoding, "application/json");
 
                 return await client.PostAsync(path, payload);
             });
